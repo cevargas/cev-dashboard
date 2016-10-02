@@ -1,0 +1,46 @@
+/* bootstrap hack */
+.radio label, .checkbox label {
+	padding-left:0 !important;
+}
+
+.input-mini {
+  width: 45px !important;
+}
+
+.input-xsmall {
+  width: 80px !important;
+}
+
+.input-small {
+  width: 145px !important;
+}
+
+.input-medium {
+  width: 240px !important;
+}
+.input-large {
+  width: 320px !important;
+}
+
+.input-xlarge {
+  width: 420px !important;
+}
+
+.margin-left-5 {
+	margin-left:5px;
+}
+
+.margin-left-20 {
+	margin-left:20px;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    /*margin: auto auto;*/
+}
+
+#form-login {
+	margin-top:50px;
+}
