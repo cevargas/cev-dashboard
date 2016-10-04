@@ -77,33 +77,6 @@ class Programas extends CI_Controller {
 		$this->load->view('admin/index', $data);
 	}
 	
-	/*public function pesquisar() {
-		
-		$data = array();
-		
-		$termo = ($this->input->post('termo', TRUE)) ? $this->input->post('termo', TRUE) : $this->uri->segment(4);
-		$data['termo'] = $termo;
-
-		//paginacao
-		$config['base_url'] = base_url()."admin/programas/pesquisar/".$termo;
-		$config['total_rows'] = $this->Programas_model->getPesquisaNumRows($termo);
-		$config['uri_segment'] = 5;
-		
-		$this->pagination->initialize($config); 	
-		
-		$data['paginacao'] = $this->pagination->create_links();
-		$data['page'] = ($this->uri->segment(5)) ? $this->uri->segment(5) : 0;
-		
-		$programas = $this->Programas_model->getPesquisa($this->config->item('per_page'), $data['page'], $termo);
-		
-		$data['programa'] = 'Programas';
-		$data['acao'] = 'Lista de Programas';
-        $data['view'] = 'admin/programas/listar'; 
-		$data['listar_programas'] = $programas;
-		
-		$this->load->view('admin/index', $data);
-	}*/
-	
 	public function novo() {
 		
 		$data['programa'] = 'Programas';

@@ -96,30 +96,93 @@ class Galeria extends CI_Controller {
 		
 	}
 
-	public function do_upload(){
+	public function salvar(){
 
-		$path = array();
-		$path['original_path'] = FCPATH .'public/uploads/galeria/original';
-   		$path['resized_path'] = FCPATH .'public/uploads/galeria/resized';
-    	$path['thumbs_path'] = FCPATH .'public/uploads/galeria/thumbs';
+		$this->form_validation->set_rules('titulo', 'Título', 'trim|required');
+		$this->form_validation->set_rules('descricao', 'Descrição', 'trim|required');
 
-		$files = $_FILES;
-    	$cpt = count($_FILES['files']['name']);
+		if ($this->form_validation->run() === TRUE) {
 
+			$data = array(
+				'titulo' => $this->input->post('titulo', TRUE),
+				'descricao' => $this->input->post('descricao', TRUE)
+			);
 
-		var_dump($cpt);
-		exit;
+			$lastId = $this->Galeria_model->insert($data);		
 
-		for($i=0; $i<$cpt; $i++) {           
-			$_FILES['files']['name']= $files['files']['name'][$i];
-			$_FILES['files']['type']= $files['files']['type'][$i];
-			$_FILES['files']['tmp_name']= $files['files']['tmp_name'][$i];
-			$_FILES['files']['error']= $files['files']['error'][$i];
-			$_FILES['files']['size']= $files['files']['size'][$i];    
+			if (!empty($_FILES['images']['name']) && $lastId) {	
 
-			$this->Uploadimages_model->do_upload($path);
+				$path = array();
+				$path['original_path'] = FCPATH .'public/uploads/galeria/original';
+				$path['resized_path'] = FCPATH .'public/uploads/galeria/resized';
+				$path['thumbs_path'] = FCPATH .'public/uploads/galeria/thumbs';
+
+				$files = $_FILES;
+
+				$count = count($_FILES['images']['name']);
+
+				$error = false;
+				$errosList = array();
+
+				for($i=0; $i<$count; $i++) {
+
+					$_FILES['images']['name'] 		= $files['images']['name'][$i];
+					$_FILES['images']['type'] 		= $files['images']['type'][$i];
+					$_FILES['images']['tmp_name'] 	= $files['images']['tmp_name'][$i];
+					$_FILES['images']['error'] 		= $files['images']['error'][$i];
+					$_FILES['images']['size'] 		= $files['images']['size'][$i];    
+
+					$upload = $this->Uploadimages_model->do_upload($path);
+					if($upload[0] == TRUE) {
+
+						$datai = array(
+							'id_galeria' => $lastId,
+							'nome' => $upload[1]
+						);
+
+						$this->Galeria_model->insertImages($datai);	
+					}
+					else {	
+						$error = true;
+						$errosList[$i] = $upload[1];
+					}
+				}
+
+				if($error) {
+					$this->set_error("Galeria incluída com erros ..." . implode(",", $errosList));
+					unset($errosList);
+					$error = false;
+					return;			
+				}
+				else {
+					$this->set_success("Galeria incluída com Sucesso.");
+					return;
+				}
+			}
 		}
-		
+		else {
+			$this->novo();
+			return;
+		}
+	}
 
+	public function set_success($mensagem = NULL) {
+		
+		if(!$mensagem)
+			$mensagem = 'Dados salvos com sucesso';
+		
+		$this->session->set_flashdata('success_msg', $mensagem);
+		redirect('admin/galeria', 'location', 303);
+		exit;
+	}
+	
+	public function set_error($mensagem = NULL) {
+		
+		if(!$mensagem)
+			$mensagem = 'Dados inválidos!';
+		
+		$this->session->set_flashdata('error_msg', $mensagem);
+		redirect('admin/galeria', 'location', 303);	
+		exit;	
 	}
 }

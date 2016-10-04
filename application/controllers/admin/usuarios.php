@@ -239,6 +239,7 @@ class Usuarios extends CI_Controller {
 					
 				$this->Usuarios_model->insert($data);		
 				$this->set_success("Usuário adicionado com Sucesso.");
+				return;
 			}
 			else {
 				$this->novo();

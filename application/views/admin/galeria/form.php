@@ -1,7 +1,7 @@
 <div class="ibox-content">
    	<?php 
 	   echo form_open_multipart( base_url( 'admin/galeria/salvar' ), 
-	   		array( 'id' => 'form-upload', 'method' => 'post', 
+	   		array( 'id' => 'form-galeria', 'method' => 'post', 
 	   				'class' => 'form-horizontal', 'role' =>'form' ) ); 
 	   ?>
 
@@ -32,36 +32,10 @@
 
         <div class="form-group">
         	<label class="col-sm-2 control-label">Imagens</label>
-            <div class="col-sm-10">
-	
-				<span class="btn btn-success fileinput-button">
-					<i class="glyphicon glyphicon-plus"></i>
-					<span>Add files...</span>
-					<input id="fileupload" type="file" name="files[]" multiple>
-				</span>
-				<button type="submit" class="btn btn-primary start">
-					<i class="glyphicon glyphicon-upload"></i>
-					<span>Iniciar upload</span>
-				</button>
-				<button type="reset" class="btn btn-warning cancel">
-					<i class="glyphicon glyphicon-ban-circle"></i>
-					<span>Cancelar upload</span>
-				</button>
-				<button type="button" class="btn btn-danger delete">
-					<i class="glyphicon glyphicon-trash"></i>
-					<span>Deletar</span>
-				</button>					
+            <div class="col-sm-10">	
+				<input type="file" class="form-control" name="images[]" id="filer_input" multiple/>			
             </div>		
-        </div>
-
-		<div class="form-group">
-			<!-- The global progress bar -->
-			<div id="progress" class="progress">
-				<div class="progress-bar progress-bar-success"></div>
-			</div>
-			<!-- The container for the uploaded files -->
-			<div id="files" class="files"></div>
-		</div>	
+        </div>	
         
         <div class="hr-line-dashed"></div>
         

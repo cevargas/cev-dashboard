@@ -33,9 +33,10 @@
     <link href="<?php echo base_url()?>public/template/js/plugins/select2/select2.css" rel="stylesheet">
     <link href="<?php echo base_url()?>public/template/js/plugins/select2/custom.css" rel="stylesheet">   
 
-    <!-- fileupload -->
-    <link href="<?php echo base_url()?>public/admin/js/jQueryFileUpload/css/jquery.fileupload.css" rel="stylesheet">
-    
+    <!-- jQuery.filer -->
+    <link href="<?php echo base_url()?>public/admin/js/jQuery.filer/css/jquery.filer.css" rel="stylesheet">
+	<link href="<?php echo base_url()?>public/admin/js/jQuery.filer/css/themes/jquery.filer-dragdropbox-theme.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="<?php echo base_url()?>public/admin/css/styles.css" rel="stylesheet">
  
@@ -198,19 +199,8 @@
     <!-- Select2 -->
     <script src="<?php echo base_url()?>public/template/js/plugins/select2/select2.min.js"></script>    
 
-    <!-- fileupload -->
-    <script src="<?php echo base_url()?>public/admin/js/jQueryFileUpload/js/vendor/jquery.ui.widget.js"></script>  
-
-    <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-    <script src="http://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
-    <!-- The Canvas to Blob plugin is included for image resizing functionality -->
-    <script src="http://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
-
-    <script src="<?php echo base_url()?>public/admin/js/jQueryFileUpload/js/jquery.iframe-transport.js"></script>  
-    <script src="<?php echo base_url()?>public/admin/js/jQueryFileUpload/js/jquery.fileupload.js"></script>  
-    <script src="<?php echo base_url()?>public/admin/js/jQueryFileUpload/js/jquery.fileupload-process.js"></script>  
-    <script src="<?php echo base_url()?>public/admin/js/jQueryFileUpload/js/jquery.fileupload-image.js"></script>  
-    <script src="<?php echo base_url()?>public/admin/js/jQueryFileUpload/js/jquery.fileupload-validate.js"></script>  
+    <!-- jQuery.filer -->
+    <script src="<?php echo base_url()?>public/admin/js/jQuery.filer/js/jquery.filer.min.js" type="text/javascript"></script>                            
 
     <!-- Custom  -->
     <script src="<?php echo base_url()?>public/admin/js/scripts.js"></script>

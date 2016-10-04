@@ -28,7 +28,32 @@ class Galeria_model extends CI_Model {
 		
 		return $result;
 	}
-	
-	
-	
+
+	public function insert($data) {		
+		
+		try {
+			
+			$this->db->set('data_criado', 'NOW()', FALSE);				
+			$result = $this->db->insert('galeria', $data);	
+
+			return $this->db->insert_id();
+				 
+		} catch (Exception $e) {			
+		  log_message('error', $e->getMessage());
+		  return;		  
+		}		
+	} 
+
+	public function insertImages($data) {		
+		
+		try {
+					
+			$result = $this->db->insert('galeria_imagens', $data);	
+			return $result;
+				 
+		} catch (Exception $e) {			
+		  log_message('error', $e->getMessage());
+		  return;		  
+		}		
+	} 	
 }

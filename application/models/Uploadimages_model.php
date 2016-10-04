@@ -9,10 +9,7 @@ class Uploadimages_model extends CI_Model {
 	
 	public function __construct() {
 		parent::__construct();
-				
-		//initialize the path where you want to save your images    
-		//return the full path of the directory
-		//make sure these directories have read and write permissions		
+					
 		$this->original_path = FCPATH .'public/admin/images/users/original';
    		$this->resized_path = FCPATH .'public/admin/images/users/resized';
     	$this->thumbs_path = FCPATH .'public/admin/images/users/thumbs';
@@ -20,13 +17,13 @@ class Uploadimages_model extends CI_Model {
 
 	function do_upload($path=array()){
 
-		$file = 'arquivo';
+		$inputName = 'arquivo';
 
 		if(isset($path)) {
 			$this->original_path = $path['original_path'];
    			$this->resized_path = $path['resized_path'];
     		$this->thumbs_path = $path['thumbs_path'];
-			$file = 'files[]';
+			$inputName = 'images';
 		}
 
     	$this->load->library('image_lib');
@@ -39,7 +36,7 @@ class Uploadimages_model extends CI_Model {
  
 		$this->load->library('upload', $config);
 
-		if( ! $this->upload->do_upload($file)) {
+		if( ! $this->upload->do_upload($inputName)) {
 			$error = $this->upload->display_errors();
 			return array(FALSE, $error);
 		}
