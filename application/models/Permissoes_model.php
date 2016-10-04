@@ -146,8 +146,8 @@ class Permissoes_model extends CI_Model {
 		
 		try {
 						
-			$result = $this->db->insert('permissoes', $data);				
-			return $result;	
+			$this->db->insert('permissoes', $data);				
+			return $this->db->insert_id();
 				 
 		} catch (Exception $e) {			
 		  log_message('error', $e->getMessage());

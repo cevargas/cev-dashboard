@@ -96,7 +96,7 @@
 				 if(count($permissoes) == 0):
                  ?>                 
                   <tr>
-                        <td colspan="6">Nenhum informação para exibir.</td>
+                        <td colspan="6">Nenhuma informação para exibir.</td>
                   </tr>      
                  <?php endif;?>
                 </tbody>

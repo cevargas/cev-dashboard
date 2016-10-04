@@ -84,22 +84,6 @@ class Usuarios_model extends CI_Model {
 		return $result;
 	}   
 	
-	/*public function getPesquisa($limit=0, $offset=20, $termo) {
-
-		$this->db->select('usuarios.*, grupos.nome AS grupoNome');
-		$this->db->from('usuarios');
-		$this->db->join('grupos', 'grupos.id = usuarios.id_grupo');
-		$this->db->like('usuarios.nome', $termo);
-		$this->db->or_like('usuarios.email', $termo);
-		$this->db->order_by('usuarios.nome', 'ASC');
-		$this->db->limit($limit, $offset);
-		$query = $this->db->get();
-		
-		$result = $query->result();		
-		
-		return $result;
-	} */
-	
 	public function getPesquisaNumRows($termo) {
 
 		$this->db->select('usuarios.*, grupos.nome AS grupoNome');

@@ -18,7 +18,16 @@ class Uploadimages_model extends CI_Model {
     	$this->thumbs_path = FCPATH .'public/admin/images/users/thumbs';
 	}
 
-	function do_upload(){
+	function do_upload($path=array()){
+
+		$file = 'arquivo';
+
+		if(isset($path)) {
+			$this->original_path = $path['original_path'];
+   			$this->resized_path = $path['resized_path'];
+    		$this->thumbs_path = $path['thumbs_path'];
+			$file = 'files[]';
+		}
 
     	$this->load->library('image_lib');
 		
@@ -29,8 +38,8 @@ class Uploadimages_model extends CI_Model {
 						'file_ext_tolower'	=> TRUE);
  
 		$this->load->library('upload', $config);
-		
-		if( ! $this->upload->do_upload('arquivo')) {
+
+		if( ! $this->upload->do_upload($file)) {
 			$error = $this->upload->display_errors();
 			return array(FALSE, $error);
 		}

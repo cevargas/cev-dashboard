@@ -192,18 +192,31 @@ class Permissoes extends CI_Controller {
 		}
 		//novo
 		else {
-					
+
 			if ($this->form_validation->run() == TRUE) {
 				
 				$data = array(
 				   'nome' => $this->input->post('nome', TRUE),
 				   'descricao' => $this->input->post('descricao', TRUE),
-				   'chave' => $this->input->post('chave', TRUE),
 				   'controlador' => $this->input->post('controlador', TRUE)
 				);	
 							
-				$this->Permissoes_model->insert($data);		
-				$this->set_success("Permissão adicionada com Sucesso.");
+				$lastId = $this->Permissoes_model->insert($data);		
+
+				//permissoes regras
+				if($this->input->post('chave')) {
+
+					foreach($this->input->post('chave') as $gp) {
+						
+						if($gp) {						
+							$datac['id_permissao'] = $lastId;
+							$datac['chave'] = $gp;
+							$this->Permissoes_model->insertPermissoesRegras($datac);
+						}
+					}			
+				}
+				
+				$this->set_success("Permissão adicionada com Sucesso.");				
 				return;
 			}
 			else {										

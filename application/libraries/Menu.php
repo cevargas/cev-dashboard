@@ -59,27 +59,39 @@ class Menu {
 	
 	function buildMenu($items) {
 		
+		//var_dump($items);
+		
 		$html = '';
 		$parent = 0;
 		$parent_stack = array();
 		
 		// $items contains the results of the SQL query
 		$children = array();
-		foreach ( $items as $item )		
+		foreach ( $items as $item ) {
 			$children[$item->programaPai][] = $item;
+		}
 
 		while ( ( $option = each( $children[$parent] ) ) || ( $parent > 0 ) )
 		{
 			if ( !empty( $option ) )
-			{					
-			
+			{
+				$pai = $children[$option['value']->programaPai][0]->programaPai;				
+
 				// 1) The item contains children:
 				// store current parent in the stack, and update current parent
 				if ( !empty( $children[$option['value']->idPrograma] ) )
 				{
-					$active = '';
-					if($this->CI->uri->segment(1, 0) == $option['value']->url) {
-						$active = 'active';		
+					//tudo isso para setar no menu a class active ao menu corrente
+					$active = '';					
+					$arrProg = $children[$option['value']->idPrograma];						
+					$thisIsIt = false;
+					foreach($arrProg as $p) {
+						if($p->url == $this->CI->uri->segment(2, 0)) {
+							$thisIsIt = true;
+						}
+					}					
+					if( ($pai == $option['value']->programaPai) && $thisIsIt ) {
+						$active = 'active';
 					}
 					
 					$html .= '<li class="'.$active.'">';
@@ -96,11 +108,12 @@ class Menu {
 				}
 				// 2) The item does not contain children
 				else {	
-				
+	
 					$activeSub = '';
-					if($this->CI->uri->segment(2, 0) == $option['value']->url) {
+					if( ($pai == $option['value']->programaPai) && ($option['value']->url == $this->CI->uri->segment(2, 0)) ) {
 						$activeSub = 'active';		
-					}					
+					}
+									
 					$html .= '<li class="'.$activeSub.'"><a href="'.base_url().'admin/'.$option['value']->url.'"><i class="fa '.$option['value']->icone.'"></i>' . $option['value']->programaNome . '</a></li>';
 				}
 			}
