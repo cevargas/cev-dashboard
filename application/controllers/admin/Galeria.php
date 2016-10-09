@@ -45,7 +45,7 @@ class Galeria extends CI_Controller {
 		$data = array();
 		
 		$data['per_page'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 1;	
-		$data['orderby'] = ($this->input->get('orderby')) ? $this->input->get('orderby') : 'titulo';	
+		$data['orderby'] = ($this->input->get('orderby')) ? $this->input->get('orderby') : 'nome';	
 		$data['order'] = ($this->input->get('order')) ? $this->input->get('order') : 'ASC';	
 		$data['termo'] = ($this->input->post('termo', TRUE)) ? $this->input->post('termo', TRUE) : $this->input->get('termo');
 
@@ -98,13 +98,13 @@ class Galeria extends CI_Controller {
 
 	public function salvar(){
 
-		$this->form_validation->set_rules('titulo', 'Título', 'trim|required');
+		$this->form_validation->set_rules('nome', 'Nome', 'trim|required');
 		$this->form_validation->set_rules('descricao', 'Descrição', 'trim|required');
 
 		if ($this->form_validation->run() === TRUE) {
 
 			$data = array(
-				'titulo' => $this->input->post('titulo', TRUE),
+				'nome' => $this->input->post('nome', TRUE),
 				'descricao' => $this->input->post('descricao', TRUE)
 			);
 

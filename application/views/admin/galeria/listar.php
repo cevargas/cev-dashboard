@@ -44,7 +44,7 @@
                     
                     <th class="col-md-4">
                     <span class="text-left">
-                    <a href="<?php echo base_url()?>admin/galeria/index?orderby=titulo&order=<?php if(isset($orderby) and $orderby == 'titulo') echo $ord; else echo 'ASC';?>&termo=<?=$termo?>&per_page=<?=$per_page?>">Título</a> 
+                    <a href="<?php echo base_url()?>admin/galeria/index?orderby=nome&order=<?php if(isset($orderby) and $orderby == 'nome') echo $ord; else echo 'ASC';?>&termo=<?=$termo?>&per_page=<?=$per_page?>">Nome</a> 
                     </span>
                     </th>
                     
@@ -63,7 +63,7 @@
                 ?>
                     <tr>
                         <td><?php echo $galeria->id;?></td>
-                        <td><?php echo $galeria->titulo?></td>
+                        <td><?php echo $galeria->nome?></td>
                         <td><?php echo $galeria->descricao?></td>
                         
                         <td>      
@@ -83,7 +83,7 @@
 							?>                
                                 <button type="button" class="btn btn-info btn-bitbucket btn-xs tooltips modalConfirm" 
                                     data-toggle="modal" data-placement="top" title="Excluir" 
-                                    data-id="<?php echo $galeria->id;?>" data-value="<?php echo $galeria->titulo?>"
+                                    data-id="<?php echo $galeria->id;?>" data-value="<?php echo $galeria->nome?>"
                                     data-url="<?php echo base_url()?>admin/galeria/excluir/<?php echo $galeria->id;?>"
                                     data-target="#modal-confirm">
                                         <i class="fa fa-trash"></i>

@@ -17,7 +17,7 @@ class Galeria_model extends CI_Model {
 		}
 		
 		if(isset($termo)) {
-			$this->db->like('titulo', quotes_to_entities($termo));
+			$this->db->like('nome', quotes_to_entities($termo));
 			$this->db->or_like('descricao', quotes_to_entities($termo));
 		}	
 		$this->db->select('*');

@@ -15,10 +15,10 @@
 		endif;	
 	?>
         <div class="form-group">
-            <label class="col-sm-2 control-label">Título</label>
+            <label class="col-sm-2 control-label">Nome</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" id="titulo" name="titulo"
-                	placeholder="Título da Galeria" value="<?php echo (isset($galeria)) ? $galeria->titulo : set_value('titulo');?>">
+                <input type="text" class="form-control" id="nome" name="nome"
+                	placeholder="Nome da Galeria" value="<?php echo (isset($galeria)) ? $galeria->nome : set_value('nome');?>">
             </div>
         </div>    
         
